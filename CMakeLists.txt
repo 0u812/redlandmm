@@ -13,6 +13,17 @@ find_package(Rasqal REQUIRED)
 
 find_package(Redland REQUIRED)
 
+set(BOOST_VERSION "1.54" CACHE STRING "Version of Boost to use")
+find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS unit_test_framework)
+message(STATUS "Boost found: ${Boost_FOUND}")
+if (NOT Boost_FOUND)
+  if (ENABLE_UNIT_TESTS)
+    message(SEND_ERROR "Unit tests require the Boost Unit Test Framework")
+  endif()
+  set(ENABLE_UNIT_TESTS OFF CACHE BOOL "Unit testing of components")
+endif()
+set(ENABLE_UNIT_TESTS ON CACHE BOOL "Unit testing of components")
+
 # http://www.cmake.org/Wiki/CMake_RPATH_handling
 if(ENABLE_FULL_RPATH)
     SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
@@ -53,6 +64,7 @@ Redlandmm
     Installation prefix:        ${CMAKE_INSTALL_PREFIX}
 
     Options:
+      Unit tests                ${ENABLE_UNIT_TESTS}
 
     Dependencies (packages marked with *** are required):
     "
@@ -87,5 +99,17 @@ message( "    * include paths                         ")
 foreach(path ${Redland_INCLUDE_DIRS})
   message( "      * ${path}")
 endforeach()
+
+if (Boost_FOUND)
+  message( "  *   Boost                                 ")
+  message( "    * libs                                  ")
+  foreach(lib ${Boost_LIBRARIES})
+    message( "      * ${lib}")
+  endforeach()
+  message( "    * include paths                         ")
+  foreach(path ${Boost_INCLUDE_DIRS})
+    message( "      * ${path}")
+  endforeach()
+endif()
 
 add_subdirectory(src)
