@@ -23,8 +23,25 @@
 
 // == INCLUDES ================================================
 
+#include "redlandmm/common/patterns/Pimpl.hpp"
+
 // == CODE ====================================================
 
+template <class T>
+Pimpl<T>::Pimpl() : p_{ new T{} } {}
 
+template <class T>
+template <class ...Args>
+Pimpl<T>::Pimpl( Args&& ...args )
+  : p_{ new T{ std::forward<Args>(args)... } } {}
+
+template <class T>
+Pimpl<T>::~Pimpl() {}
+
+template <class T>
+T* Pimpl<T>::operator->() { return  p_.get(); }
+
+template <class T>
+T& Pimpl<T>::operator* () { return *p_.get(); }
 
 # endif // header guard
