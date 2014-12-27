@@ -15,7 +15,6 @@ find_package(Redland REQUIRED)
 
 set(BOOST_VERSION "1.54" CACHE STRING "Version of Boost to use")
 find_package(Boost ${BOOST_VERSION} REQUIRED COMPONENTS unit_test_framework)
-message(STATUS "Boost found: ${Boost_FOUND}")
 if (NOT Boost_FOUND)
   if (ENABLE_UNIT_TESTS)
     message(SEND_ERROR "Unit tests require the Boost Unit Test Framework")
@@ -41,6 +40,9 @@ if(ENABLE_FULL_RPATH)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 message(STATUS "
 -------------------------------------------------------------------------------
@@ -112,4 +114,4 @@ if (Boost_FOUND)
   endforeach()
 endif()
 
-add_subdirectory(src)
+add_subdirectory(redlandmm)
