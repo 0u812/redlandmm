@@ -95,7 +95,7 @@ namespace Redlandmm
     #define GF_PYREALFMT "d"
         
     /// Determines verbosity of diagnostic messages
-    #define REDLANDMM_DEBUG_LEVEL REDLANDMM_DEBUG_LEVEL
+//     #define REDLANDMM_DEBUG_LEVEL REDLANDMM_DEBUG_LEVEL
     
     //C++ typedefs
     

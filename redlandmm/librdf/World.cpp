@@ -4,16 +4,11 @@
 
 // == FILEDOC =================================================
 
-/** @file Pimpl.hpp
+/** @file World.cpp
   * @author JKM
   * @date 12/27/2014
   * @copyright Apache License, Version 2.0
-  * @brief Pimpl idiom pattern based on Herb Sutter GotW 101
-  * @details http://herbsutter.com/gotw/_101/
 **/
-
-# ifndef __RLMM_PIMPL_H__
-# define __RLMM_PIMPL_H__
 
 // == MACROS ==================================================
 
@@ -24,36 +19,28 @@
 // == INCLUDES ================================================
 
 #include "redlandmm/common/core/RedlandmmCore.h"
-#include <memory>
+#include "redlandmm/librdf/World.hpp"
+
+#include "librdf.h"
 
 // == CODE ====================================================
 
 namespace redlandmm {
 
-  template <class T>
-  class Pimpl {
-  protected:
-    typedef std::unique_ptr<T> Ptr;
-    Ptr p_;
-
+  class World::WorldImpl {
   public:
+    WorldImpl() {
+      world_ = librdf_new_world();
+    }
 
-    /// Empty ctor
-    Pimpl();
+    ~WorldImpl() {
+      librdf_free_world(world_);
+    }
 
-    /// Forwarding ctor
-    template<class ...Args>
-    Pimpl(Args&&...);
-
-    /// Dtor
-    ~Pimpl();
-
-    T* operator->();
-
-    T& operator*();
-
+  protected:
+    librdf_world* world_ = NULL;
   };
 
-}
+  World::World() {}
 
-# endif // header guard
+}

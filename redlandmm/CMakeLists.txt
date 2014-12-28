@@ -24,14 +24,22 @@ set(COMMON_HEADERS
     common/patterns/Pimpl.hpp
     common/patterns/PimplImpl.hpp)
 
+set(LIBRDF_SOURCES
+    librdf/World.cpp
+    )
+
+set(LIBRDF_HEADERS
+    librdf/World.hpp
+    )
+
 configure_file(common/core/config.h.in common/core/config.h)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/common/core/config.h DESTINATION include/redlandmm/common/core)
 
-set( REDLANDMM_SOURCES ${COMMON_SOURCES} )
+set( REDLANDMM_SOURCES ${COMMON_SOURCES} ${LIBRDF_SOURCES} )
 
 add_library(redlandmm SHARED ${REDLANDMM_SOURCES})
 
-set( REDLANDMM_HEADERS ${COMMON_HEADERS} )
+set( REDLANDMM_HEADERS ${COMMON_HEADERS} ${LIBRDF_HEADERS} )
 
 foreach(header ${REDLANDMM_HEADERS})
   get_filename_component(prefix ${header} PATH)
