@@ -35,6 +35,11 @@ namespace redlandmm {
   class Model {
   public:
     Model(StoragePtr&& storage);
+
+    template <class StorageClass>
+    Model(const StorageClass& storage)
+      : Model(StoragePtr(new StorageClass(storage))) {}
+
     ~Model();
 
   protected:

@@ -20,6 +20,7 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/librdf/World.hpp"
+#include "redlandmm/librdf/Model.hpp"
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN
@@ -40,6 +41,8 @@ BOOST_AUTO_TEST_CASE( my_test )
   using namespace redlandmm;
 
   World world;
+
+  Model model(StorageHashMem());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
