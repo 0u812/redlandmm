@@ -49,7 +49,7 @@
 //headers that need to use these types, hence they must be
 //available in the default namespace
 /*#ifdef __cplusplus
-namespace Redlandmm
+namespace redlandmm
 {
 #endif*/
     

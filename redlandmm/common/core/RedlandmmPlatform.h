@@ -44,7 +44,7 @@
 #ifndef __REDLANDMM_PLATFORM_H_
 #define __REDLANDMM_PLATFORM_H_
 
-//namespace Redlandmm //Pointless
+//namespace redlandmm //Pointless
 //{
 //Platform parameters
 #define REDLANDMM_PLATFORM_WIN   1
@@ -171,6 +171,6 @@
 #   define REDLANDMM_ENDIAN REDLANDMM_LITTLE_ENDIAN
 #endif
 
-//} //namespace Redlandmm
+//} //namespace redlandmm
 
 #endif

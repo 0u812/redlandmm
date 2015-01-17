@@ -35,8 +35,8 @@
 //- SPECIFIC -//
 #include "redlandmm/common/core/RedlandmmCommon.h"
 
-namespace Redlandmm
+namespace redlandmm
 {
   // ALL HAIL THE GOOGUL
   const Real pi = 3.14159265359;
-} //namespace Redlandmm
+} //namespace redlandmm

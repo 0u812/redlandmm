@@ -35,7 +35,7 @@
 //- SPECIFIC -//
 #include "redlandmm/common/core/RedlandmmException.hpp"
 
-namespace Redlandmm
+namespace redlandmm
 {
     //== CLASS METHODS ===============================================================
     
@@ -86,4 +86,4 @@ namespace Redlandmm
     {
         return m_type;
     }
-} //namespace Redlandmm
+} //namespace redlandmm

@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //==DEFINES/TYPES===================================//
 
-namespace Redlandmm
+namespace redlandmm
 {
     
     class DefaultFalseBool

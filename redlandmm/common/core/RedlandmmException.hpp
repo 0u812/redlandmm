@@ -36,7 +36,7 @@
 #include "redlandmm/common/core/RedlandmmException.hpp"
 #include <exception>
 
-namespace Redlandmm
+namespace redlandmm
 {
     
     //== CLASSES =====================================================================
@@ -60,6 +60,7 @@ namespace Redlandmm
                 EXC_SANITY_CHECK,
                 EXC_REDUNDANCY_CHECK_FAILURE,
                 EXC_IMPOSSIBLE_CMD,
+                EXC_RUNTIME,
                 EXC_INVALID_PARAMETER,
                 EXC_INTERNAL_CHECK_FAILURE
             };
@@ -206,7 +207,7 @@ namespace Redlandmm
     /**
         Thrown whenever a general runtime error occurs
     */
-    class RuntimeException : public Exception
+    class _RedlandmmExport RuntimeException : public Exception
     {
         public:
             RuntimeException( const String& desc, const String& origin, const char* file, const long line )
@@ -279,6 +280,11 @@ namespace Redlandmm
                 const char* file, const long line) {
                     return ImpossibleCommandException(desc, origin, file, line);
                 }
+            static RuntimeException create( ExceptionType< Exception::EXC_RUNTIME >,
+                const String& desc, const String& origin,
+                const char* file, const long line) {
+                    return RuntimeException(desc, origin, file, line);
+                }
             static InvalidParameterException create( ExceptionType< Exception::EXC_INVALID_PARAMETER >,
                 const String& desc, const String& origin,
                 const char* file, const long line) {
@@ -291,7 +297,7 @@ namespace Redlandmm
                 }
     };
     
-#define REDLANDMM_THROW( type, desc, origin ) throw type( desc, origin, __FILE__, __LINE__ );
-} //namespace Redlandmm
+#define REDLANDMM_THROW( type, desc, origin ) throw type( desc, origin, __FILE__, __LINE__ )
+} //namespace redlandmm
 
 #endif

@@ -24,6 +24,7 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/common/patterns/Pimpl.hpp"
+#include "redlandmm/librdf/World.hpp"
 
 #include <memory> // unique_ptr
 
@@ -33,15 +34,28 @@ namespace redlandmm {
 
   class Storage {
   public:
-    Storage();
     ~Storage();
 
   protected:
+    Storage();
+
     class StorageImpl;
     Pimpl<StorageImpl> impl_;
   };
 
   typedef std::unique_ptr<Storage> StoragePtr;
+
+  class StorageHashMem : public Storage {
+  public:
+    StorageHashMem(World& world);
+    ~StorageHashMem();
+
+  protected:
+    class StorageHashMemImpl;
+    Pimpl<StorageHashMemImpl> impl_;
+  };
+
+  typedef std::unique_ptr<StorageHashMem> StorageHashMemPtr;
 
 }
 

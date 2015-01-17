@@ -4,11 +4,14 @@
 
 // == FILEDOC =================================================
 
-/** @file World.cpp
+/** @file WorldImpl.hpp
   * @author JKM
-  * @date 12/27/2014
+  * @date 01/17/2015
   * @copyright Apache License, Version 2.0
 **/
+
+# ifndef __RLMM_WORLD_IMPL_H__
+# define __RLMM_WORLD_IMPL_H__
 
 // == MACROS ==================================================
 
@@ -21,7 +24,6 @@
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/common/patterns/PimplImpl.hpp"
 #include "redlandmm/librdf/World.hpp"
-#include "redlandmm/librdf/WorldImpl.hpp"
 
 #include "librdf.h"
 
@@ -29,8 +31,28 @@
 
 namespace redlandmm {
 
-  World::World() {}
+  class World::WorldImpl {
+  public:
+    WorldImpl() {
+      world_ = librdf_new_world();
+    }
 
-  World::~World() {}
+    ~WorldImpl() {
+      librdf_free_world(world_);
+    }
+
+  protected:
+    librdf_world* get_world() {
+      if (!world_)
+        REDLANDMM_THROW( RuntimeException, "Empty ref", "WorldImpl::get_world" );
+      return world_;
+    }
+
+    librdf_world* world_ = NULL;
+
+    friend class StorageHashMem;
+  };
 
 }
+
+# endif

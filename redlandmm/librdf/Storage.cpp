@@ -19,8 +19,9 @@
 // == INCLUDES ================================================
 
 #include "redlandmm/common/core/RedlandmmCore.h"
-#include "redlandmm/librdf/Storage.hpp"
 #include "redlandmm/common/patterns/PimplImpl.hpp"
+#include "redlandmm/librdf/WorldImpl.hpp"
+#include "redlandmm/librdf/Storage.hpp"
 
 #include "librdf.h"
 
@@ -39,9 +40,29 @@ namespace redlandmm {
   protected:
   };
 
-  Storage()
-    {}
+  Storage::Storage() {}
 
   Storage::~Storage() {}
+
+  class StorageHashMem::StorageHashMemImpl {
+  public:
+    StorageHashMemImpl(World::Impl& world) {
+      storage_ = librdf_new_storage(world->get_world(), "hashes", NULL, "hash-type='memory'");
+      if (!storage_)
+        REDLANDMM_THROW( RuntimeException, "Failed to create hashed storage in memory", "StorageHashMemImpl::StorageHashMemImpl" );
+    }
+
+    ~StorageHashMemImpl() {
+      librdf_free_storage(storage_);
+    }
+
+  protected:
+    librdf_storage* storage_ = NULL;
+  };
+
+  StorageHashMem::StorageHashMem(World& world)
+    : impl_(world.getimpl()) {}
+
+  StorageHashMem::~StorageHashMem() {}
 
 }

@@ -23,7 +23,6 @@
 // == INCLUDES ================================================
 
 #include "redlandmm/common/core/RedlandmmCore.h"
-#include "redlandmm/librdf/Model.hpp"
 #include "redlandmm/common/patterns/Pimpl.hpp"
 
 // == CODE ====================================================
@@ -35,11 +34,14 @@ namespace redlandmm {
     World();
     ~World();
 
-    ModelPtr newModel(StoragePtr&& storage);
-
   protected:
     class WorldImpl;
-    Pimpl<WorldImpl> impl_;
+    typedef Pimpl<WorldImpl> Impl;
+    Impl impl_;
+
+    Impl& getimpl() { return impl_; }
+
+    friend class StorageHashMem;
   };
 
   typedef std::unique_ptr<World> WorldPtr;

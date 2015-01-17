@@ -57,7 +57,7 @@
 #define JOIN(x, y) x##y
 
 #ifdef __cplusplus
-namespace Redlandmm
+namespace redlandmm
 {
 #endif
 
@@ -126,7 +126,7 @@ namespace Redlandmm
     #endif//End of C++ typedefs
     
 #ifdef __cplusplus
-} //namespace Redlandmm
+} //namespace redlandmm
 #endif
 
 
