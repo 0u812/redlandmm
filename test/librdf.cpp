@@ -4,7 +4,7 @@
 
 // == FILEDOC =================================================
 
-/** @file World.cpp
+/** @file librdf.cpp
   * @author JKM
   * @date 12/27/2014
   * @copyright Apache License, Version 2.0
@@ -20,30 +20,26 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/librdf/World.hpp"
-#include "redlandmm/common/patterns/PimplImpl.hpp"
 
-#include "librdf.h"
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN
+#define BOOS_TEST_MODULE librdf
+#include "boost/test/unit_test.hpp"
 
 // == CODE ====================================================
 
-namespace redlandmm {
+BOOST_AUTO_TEST_SUITE( librdf )
 
-  class World::WorldImpl {
-  public:
-    WorldImpl() {
-      world_ = librdf_new_world();
-    }
-
-    ~WorldImpl() {
-      librdf_free_world(world_);
-    }
-
-  protected:
-    librdf_world* world_ = NULL;
-  };
-
-  World::World() {}
-
-  World::~World() {}
-
+BOOST_AUTO_TEST_CASE( sanity )
+{
+  BOOST_CHECK_MESSAGE( true == true, "Sanity check" );
 }
+
+BOOST_AUTO_TEST_CASE( my_test )
+{
+  using namespace redlandmm;
+
+  World world;
+}
+
+BOOST_AUTO_TEST_SUITE_END()

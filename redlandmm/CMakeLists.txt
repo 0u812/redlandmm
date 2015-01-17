@@ -39,6 +39,12 @@ set( REDLANDMM_SOURCES ${COMMON_SOURCES} ${LIBRDF_SOURCES} )
 
 add_library(redlandmm SHARED ${REDLANDMM_SOURCES})
 
+target_link_libraries(redlandmm ${Redland_LIBRARIES} ${Rasqal_LIBRARIES} ${Raptor2_LIBRARIES})
+
+install(TARGETS redlandmm DESTINATION lib)
+
+# ** Headers **
+
 set( REDLANDMM_HEADERS ${COMMON_HEADERS} ${LIBRDF_HEADERS} )
 
 foreach(header ${REDLANDMM_HEADERS})

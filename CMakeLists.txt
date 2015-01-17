@@ -23,6 +23,8 @@ if (NOT Boost_FOUND)
 endif()
 set(ENABLE_UNIT_TESTS ON CACHE BOOL "Unit testing of components")
 
+include_directories(${Boost_INCLUDE_DIR})
+
 # http://www.cmake.org/Wiki/CMake_RPATH_handling
 if(ENABLE_FULL_RPATH)
     SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
@@ -115,3 +117,9 @@ if (Boost_FOUND)
 endif()
 
 add_subdirectory(redlandmm)
+
+
+if(ENABLE_UNIT_TESTS)
+  enable_testing()
+  add_subdirectory(test)
+endif()
