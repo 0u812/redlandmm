@@ -44,7 +44,13 @@ namespace redlandmm {
   T* Pimpl<T>::operator->() { return  p_.get(); }
 
   template <class T>
+  const T* Pimpl<T>::operator->() const { return  p_.get(); }
+
+  template <class T>
   T& Pimpl<T>::operator* () { return *p_.get(); }
+
+  template <class T>
+  const T& Pimpl<T>::operator* () const { return *p_.get(); }
 
 }
 

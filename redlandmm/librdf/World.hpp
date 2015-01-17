@@ -42,6 +42,7 @@ namespace redlandmm {
     Impl& getimpl() { return impl_; }
 
     friend class StorageHashMem;
+    friend class URI;
   };
 
   typedef std::unique_ptr<World> WorldPtr;

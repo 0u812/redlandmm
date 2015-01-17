@@ -52,6 +52,7 @@ namespace redlandmm {
     librdf_world* world_ = NULL;
 
     friend class StorageHashMem;
+    friend class URI;
   };
 
 }

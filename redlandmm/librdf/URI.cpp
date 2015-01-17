@@ -20,6 +20,7 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/common/patterns/PimplImpl.hpp"
+#include "redlandmm/librdf/WorldImpl.hpp"
 #include "redlandmm/librdf/URI.hpp"
 
 #include "librdf.h"
@@ -47,12 +48,12 @@ namespace redlandmm {
   };
 
   URI::URI(World& world, std::string id)
-    : impl(world.getimpl(), id) {}
+    : impl_(world.getimpl(), id) {}
 
   URI::~URI() {}
 
-  bool operator == (const URI& other) const {
-    return impl_.compare(*other.impl_);
+  bool URI::operator == (const URI& other) const {
+    return impl_->compare(*other.impl_);
   }
 
 }

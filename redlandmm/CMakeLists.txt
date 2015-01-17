@@ -28,12 +28,15 @@ set(LIBRDF_SOURCES
     librdf/Model.cpp
     librdf/Storage.cpp
     librdf/World.cpp
+    librdf/URI.cpp
     )
 
 set(LIBRDF_HEADERS
     librdf/Model.hpp
+    librdf/Storage.hpp
     librdf/World.hpp
     librdf/WorldImpl.hpp
+    librdf/URI.hpp
     )
 
 configure_file(common/core/config.h.in common/core/config.h)

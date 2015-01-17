@@ -53,8 +53,10 @@ namespace redlandmm {
     ~Pimpl();
 
     T* operator->();
+    const T* operator->() const;
 
     T& operator*();
+    const T& operator*() const;
 
   };
 
