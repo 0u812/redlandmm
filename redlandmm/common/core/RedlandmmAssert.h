@@ -53,7 +53,7 @@
     #define EXPAND(x) x //Workaround for MSVC bug
     #define GET_ASTM(A1, A2, A3, A4, ...) A4
     
-    #define REDLANDMM_ASSERT( ... ) EXPAND(GET_ASTM(__VA_ARGS__, ***error*** "Too many arguments to assert; file: "__FILE__:__LINE__,\
+    #define REDLANDMM_ASSERT( ... ) EXPAND(GET_ASTM(__VA_ARGS__, ***error*** "Too many arguments to assert; file: " __FILE__:__LINE__,\
         REDLANDMM_ASSERT2, REDLANDMM_ASSERT1)( __VA_ARGS__ ))
     
     //Shorthand:
@@ -69,7 +69,7 @@
      */
     #define AN( ... ) REDLANDMM_ASSERT( __VA_ARGS__ )
     //Assert ^ZERO^:
-    #define AZ( ... ) EXPAND(GET_ASTM(__VA_ARGS__, ***error*** "Too many arguments to assert; file: "__FILE__:__LINE__,\
+    #define AZ( ... ) EXPAND(GET_ASTM(__VA_ARGS__, ***error*** "Too many arguments to assert; file: " __FILE__:__LINE__,\
         REDLANDMM_IASSERT2, REDLANDMM_IASSERT1)( __VA_ARGS__ ))
 
 #ifdef __cplusplus
