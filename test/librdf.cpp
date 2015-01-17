@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE( my_test )
 
   World world;
 
-  Model model(StorageHashMem());
+  Model model{StorageHashMem(world)};
 }
 
 BOOST_AUTO_TEST_SUITE_END()

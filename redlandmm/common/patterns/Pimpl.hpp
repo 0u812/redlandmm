@@ -45,6 +45,10 @@ namespace redlandmm {
     template<class ...Args>
     Pimpl(Args&&...);
 
+    /// Move ctor
+    Pimpl(Pimpl&& other)
+      : p_(std::move(other.p_)) {}
+
     /// Dtor
     ~Pimpl();
 

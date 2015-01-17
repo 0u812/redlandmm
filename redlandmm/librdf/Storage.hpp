@@ -11,8 +11,8 @@
   * @brief librdf world
 **/
 
-# ifndef __RLMM_STORAGE_H__
-# define __RLMM_STORAGE_H__
+# ifndef __RLMM_LIBRDF_STORAGE_H__
+# define __RLMM_LIBRDF_STORAGE_H__
 
 // == MACROS ==================================================
 
@@ -49,6 +49,8 @@ namespace redlandmm {
   public:
     StorageHashMem(World& world);
     ~StorageHashMem();
+
+    StorageHashMem(StorageHashMem&& other);
 
   protected:
     class StorageHashMemImpl;

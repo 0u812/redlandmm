@@ -11,8 +11,8 @@
   * @brief librdf world
 **/
 
-# ifndef __RLMM_MODEL_H__
-# define __RLMM_MODEL_H__
+# ifndef __RLMM_LIBRDF_MODEL_H__
+# define __RLMM_LIBRDF_MODEL_H__
 
 // == MACROS ==================================================
 
@@ -37,8 +37,8 @@ namespace redlandmm {
     Model(StoragePtr&& storage);
 
     template <class StorageClass>
-    Model(const StorageClass& storage)
-      : Model(StoragePtr(new StorageClass(storage))) {}
+    Model(StorageClass&& storage)
+      : Model(StoragePtr(new StorageClass(std::move(storage)))) {}
 
     ~Model();
 

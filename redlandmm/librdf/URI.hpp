@@ -4,15 +4,15 @@
 
 // == FILEDOC =================================================
 
-/** @file World.hpp
+/** @file URI.hpp
   * @author JKM
-  * @date 12/27/2014
+  * @date 01/17/2015
   * @copyright Apache License, Version 2.0
-  * @brief librdf world
+  * @brief librdf uri
 **/
 
-# ifndef __RLMM_LIBRDF_WORLD_H__
-# define __RLMM_LIBRDF_WORLD_H__
+# ifndef __RLMM_LIBRDF_URI_H__
+# define __RLMM_LIBRDF_URI_H__
 
 // == MACROS ==================================================
 
@@ -23,28 +23,27 @@
 // == INCLUDES ================================================
 
 #include "redlandmm/common/core/RedlandmmCore.h"
+#include "redlandmm/librdf/World.hpp"
 #include "redlandmm/common/patterns/Pimpl.hpp"
 
 // == CODE ====================================================
 
 namespace redlandmm {
 
-  class World {
+  class URI {
   public:
-    World();
-    ~World();
+    URI(World& world, std::string id);
+    ~URI();
+
+    bool operator == (const URI& other) const;
 
   protected:
-    class WorldImpl;
-    typedef Pimpl<WorldImpl> Impl;
+    class URIImpl;
+    typedef Pimpl<URIImpl> Impl;
     Impl impl_;
-
-    Impl& getimpl() { return impl_; }
-
-    friend class StorageHashMem;
   };
 
-  typedef std::unique_ptr<World> WorldPtr;
+  typedef std::unique_ptr<URI> URIPtr;
 
 }
 

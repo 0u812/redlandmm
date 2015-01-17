@@ -4,14 +4,11 @@
 
 // == FILEDOC =================================================
 
-/** @file WorldImpl.hpp
+/** @file URI.cpp
   * @author JKM
   * @date 01/17/2015
   * @copyright Apache License, Version 2.0
 **/
-
-# ifndef __RLMM_WORLD_IMPL_H__
-# define __RLMM_WORLD_IMPL_H__
 
 // == MACROS ==================================================
 
@@ -23,7 +20,7 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/common/patterns/PimplImpl.hpp"
-#include "redlandmm/librdf/World.hpp"
+#include "redlandmm/librdf/URI.hpp"
 
 #include "librdf.h"
 
@@ -31,29 +28,31 @@
 
 namespace redlandmm {
 
-  class World::WorldImpl {
+  class URI::URIImpl {
   public:
-    WorldImpl() {
-      world_ = librdf_new_world();
-      librdf_world_open(world_);
+    URIImpl(World::Impl& world, std::string id) {
+      uri_ = librdf_new_uri(world->get_world(), (const unsigned char*)id.c_str());
     }
 
-    ~WorldImpl() {
-      librdf_free_world(world_);
+    ~URIImpl() {
+      librdf_free_uri(uri_);
+    }
+
+    bool compare(const URIImpl& other) const {
+      return librdf_uri_equals(uri_, other.uri_);
     }
 
   protected:
-    librdf_world* get_world() {
-      if (!world_)
-        REDLANDMM_THROW( RuntimeException, "Empty ref", "WorldImpl::get_world" );
-      return world_;
-    }
-
-    librdf_world* world_ = NULL;
-
-    friend class StorageHashMem;
+    librdf_uri *uri_ = NULL;
   };
 
-}
+  URI::URI(World& world, std::string id)
+    : impl(world.getimpl(), id) {}
 
-# endif
+  URI::~URI() {}
+
+  bool operator == (const URI& other) const {
+    return impl_.compare(*other.impl_);
+  }
+
+}

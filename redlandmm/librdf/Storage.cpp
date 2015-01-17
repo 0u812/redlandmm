@@ -65,4 +65,7 @@ namespace redlandmm {
 
   StorageHashMem::~StorageHashMem() {}
 
+  StorageHashMem::StorageHashMem(StorageHashMem&& other)
+    : impl_(std::move(other.impl_)) {}
+
 }
