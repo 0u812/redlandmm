@@ -29,6 +29,10 @@
 
 namespace redlandmm {
 
+  /**
+   * @brief Manages context for subsequently created objects
+   * @details The world must outlive all objects created using it.
+   */
   class World {
   public:
     World();

@@ -37,6 +37,10 @@ namespace redlandmm {
 
     bool operator == (const URI& other) const;
 
+    bool operator != (const URI& other) const {
+      return !(*this == other);
+    }
+
   protected:
     class URIImpl;
     typedef Pimpl<URIImpl> Impl;
