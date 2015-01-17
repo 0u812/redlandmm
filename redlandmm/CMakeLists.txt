@@ -25,10 +25,12 @@ set(COMMON_HEADERS
     common/patterns/PimplImpl.hpp)
 
 set(LIBRDF_SOURCES
+    librdf/Model.cpp
     librdf/World.cpp
     )
 
 set(LIBRDF_HEADERS
+    librdf/Model.hpp
     librdf/World.hpp
     )
 

@@ -4,15 +4,11 @@
 
 // == FILEDOC =================================================
 
-/** @file World.hpp
+/** @file Model.cpp
   * @author JKM
   * @date 12/27/2014
   * @copyright Apache License, Version 2.0
-  * @brief librdf world
 **/
-
-# ifndef __RLMM_WORLD_H__
-# define __RLMM_WORLD_H__
 
 // == MACROS ==================================================
 
@@ -24,26 +20,28 @@
 
 #include "redlandmm/common/core/RedlandmmCore.h"
 #include "redlandmm/librdf/Model.hpp"
-#include "redlandmm/common/patterns/Pimpl.hpp"
+#include "redlandmm/common/patterns/PimplImpl.hpp"
+
+#include "librdf.h"
 
 // == CODE ====================================================
 
 namespace redlandmm {
 
-  class World {
+  class Model::ModelImpl {
   public:
-    World();
-    ~World();
+    ModelImpl(StoragePtr&& storage) {
+    }
 
-    ModelPtr newModel(StoragePtr&& storage);
+    ~ModelImpl() {
+    }
 
   protected:
-    class WorldImpl;
-    Pimpl<WorldImpl> impl_;
   };
 
-  typedef std::unique_ptr<World> WorldPtr;
+  Model::Model(StoragePtr&& storage)
+    : impl_(std::move(storage)) {}
+
+  Model::~Model() {}
 
 }
-
-# endif // header guard

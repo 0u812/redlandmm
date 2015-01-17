@@ -4,15 +4,15 @@
 
 // == FILEDOC =================================================
 
-/** @file World.hpp
+/** @file Storage.hpp
   * @author JKM
-  * @date 12/27/2014
+  * @date 01/17/2015
   * @copyright Apache License, Version 2.0
   * @brief librdf world
 **/
 
-# ifndef __RLMM_WORLD_H__
-# define __RLMM_WORLD_H__
+# ifndef __RLMM_STORAGE_H__
+# define __RLMM_STORAGE_H__
 
 // == MACROS ==================================================
 
@@ -23,26 +23,25 @@
 // == INCLUDES ================================================
 
 #include "redlandmm/common/core/RedlandmmCore.h"
-#include "redlandmm/librdf/Model.hpp"
 #include "redlandmm/common/patterns/Pimpl.hpp"
+
+#include <memory> // unique_ptr
 
 // == CODE ====================================================
 
 namespace redlandmm {
 
-  class World {
+  class Storage {
   public:
-    World();
-    ~World();
-
-    ModelPtr newModel(StoragePtr&& storage);
+    Storage();
+    ~Storage();
 
   protected:
-    class WorldImpl;
-    Pimpl<WorldImpl> impl_;
+    class StorageImpl;
+    Pimpl<StorageImpl> impl_;
   };
 
-  typedef std::unique_ptr<World> WorldPtr;
+  typedef std::unique_ptr<Storage> StoragePtr;
 
 }
 
